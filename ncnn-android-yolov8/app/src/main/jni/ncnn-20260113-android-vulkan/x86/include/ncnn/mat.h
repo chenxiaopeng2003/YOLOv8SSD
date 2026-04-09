@@ -295,7 +295,7 @@ public:
 #endif // NCNN_PLATFORM_API
 #endif // NCNN_PIXEL
 
-    // substract channel-wise mean values, then multiply by normalize values, pass 0 to skip
+    // subtract channel-wise mean values, then multiply by normalize values, pass 0 to skip
     void substract_mean_normalize(const float* mean_vals, const float* norm_vals);
 
     // convenient construct from half precision floating point data
