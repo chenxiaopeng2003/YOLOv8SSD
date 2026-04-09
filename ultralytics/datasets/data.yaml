@@ -1,0 +1,17 @@
+train: L:\dasktop\A_Graduation_Project\ultralytics-main\ultralytics\datasets\yiwuyahenzenqiang\images\train # train images (relative to 'path') 118287 images
+val: L:\dasktop\A_Graduation_Project\ultralytics-main\ultralytics\datasets\yiwuyahenzenqiang\images\val # val images (relative to 'path') 5000 images
+test: L:\dasktop\A_Graduation_Project\ultralytics-main\ultralytics\datasets\yiwuyahenzenqiang\images\test
+
+nc : 10
+# Classes
+names:
+  0: chongkong
+  1: hanfeng
+  2: yueyawan
+  3: shuiban
+  4: youban
+  5: siban
+  6: yiwu
+  7: yahen
+  8: zhehen
+  9: yaozhe

@@ -1,0 +1,56 @@
+# Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
+
+# Ultralytics YOLOv8 object detection model with P3/8 - P5/32 outputs
+# Model docs: https://docs.ultralytics.com/models/yolov8
+# Task docs: https://docs.ultralytics.com/tasks/detect
+
+# Parameters
+nc: 80 # number of classes
+scales: # model compound scaling constants, i.e. 'model=yolov8n.yaml' will call yolov8.yaml with scale 'n'
+  # [depth, width, max_channels]
+  n: [0.33, 0.25, 1024] # YOLOv8n summary: 129 layers, 3157200 parameters, 3157184 gradients, 8.9 GFLOPS
+  s: [0.33, 0.50, 1024] # YOLOv8s summary: 129 layers, 11166560 parameters, 11166544 gradients, 28.8 GFLOPS
+  m: [0.67, 0.75, 768] # YOLOv8m summary: 169 layers, 25902640 parameters, 25902624 gradients, 79.3 GFLOPS
+  l: [1.00, 1.00, 512] # YOLOv8l summary: 209 layers, 43691520 parameters, 43691504 gradients, 165.7 GFLOPS
+  x: [1.00, 1.25, 512] # YOLOv8x summary: 209 layers, 68229648 parameters, 68229632 gradients, 258.5 GFLOPS
+
+# YOLOv8.0n backbone
+backbone:
+  # [from, repeats, module, args]
+  - [-1, 1, Conv, [64, 3, 2]]     # 0-P1/2
+  - [-1, 1, Conv, [128, 3, 2]]    # 1-P2/4
+  - [-1, 3, C2f, [128, True]]     # 2
+  - [-1, 1, CBAM, []]             # 3 (新增)
+
+  - [-1, 1, Conv, [256, 3, 2]]    # 4-P3/8
+  - [-1, 6, C2f, [256, True]]     # 5
+  - [-1, 1, CBAM, []]             # 6 (新增) - 这里的 6 是 P3
+
+  - [-1, 1, Conv, [512, 3, 2]]    # 7-P4/16
+  - [-1, 6, C2f, [512, True]]     # 8
+  - [-1, 1, CBAM, []]             # 9 (新增) - 这里的 9 是 P4
+
+  - [-1, 1, Conv, [1024, 3, 2]]   # 10-P5/32
+  - [-1, 3, C2f, [1024, True]]    # 11
+  - [-1, 1, SPPF, [1024, 5]]      # 12
+  - [-1, 1, CBAM, []]             # 13 (新增) - 这里的 13 是 P5
+
+# YOLOv8.0n head
+head:
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]] # 14
+  - [[-1, 9], 1, Concat, [1]] # 15: cat backbone P4 (原本是6，现在变9了)
+  - [-1, 3, C2f, [512]]       # 16
+
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]] # 17
+  - [[-1, 6], 1, Concat, [1]] # 18: cat backbone P3 (原本是4，现在变6了)
+  - [-1, 3, C2f, [256]]       # 19 (P3/8-small)
+
+  - [-1, 1, Conv, [256, 3, 2]] # 20
+  - [[-1, 16], 1, Concat, [1]] # 21: cat head P4 (原本是12，现在变16了)
+  - [-1, 3, C2f, [512]]        # 22 (P4/16-medium)
+
+  - [-1, 1, Conv, [512, 3, 2]] # 23
+  - [[-1, 13], 1, Concat, [1]] # 24: cat backbone P5 (原本是9，现在变13了)
+  - [-1, 3, C2f, [1024]]       # 25 (P5/32-large)
+
+  - [[19, 22, 25], 1, Detect, [nc]] # 26: Detect(P3, P4, P5) (索引顺延)
