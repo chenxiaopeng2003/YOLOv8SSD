@@ -175,7 +175,7 @@ public:
     // assign
     Extractor& operator=(const Extractor&);
 
-    // clear blob mats and alloctors
+    // clear blob mats and allocators
     void clear();
 
     // enable light mode

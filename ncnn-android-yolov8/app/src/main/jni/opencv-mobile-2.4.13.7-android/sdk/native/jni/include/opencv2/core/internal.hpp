@@ -336,7 +336,7 @@ namespace cv
 /* the alignment of all the allocated buffers */
 #define  CV_MALLOC_ALIGN    16
 
-/* default alignment for dynamic data strucutures, resided in storages. */
+/* default alignment for dynamic data structures, resided in storages. */
 #define  CV_STRUCT_ALIGN    ((int)sizeof(double))
 
 /* default storage block size */
@@ -503,7 +503,7 @@ CV_INLINE  CvSize  cvGetMatSize( const CvMat* mat )
     *    notice, this list of conditions and the following disclaimer in the
     *    documentation and/or other materials provided with the distribution.
     * 3. All advertising materials mentioning features or use of this software
-    *    must display the following acknowledgement:
+    *    must display the following acknowledgment:
     *  This product includes software developed by the University of
     *  California, Berkeley and its contributors.
     * 4. Neither the name of the University nor the names of its contributors
