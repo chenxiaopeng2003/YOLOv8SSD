@@ -1,13 +1,10 @@
-from ultralytics import YOLO
 import multiprocessing
-import os
+
+from ultralytics import YOLO
 
 
 def main():
-    model = YOLO(
-        r"ultralytics/cfg/models/v8/yolov8_BiFPN.yaml",
-        task="detect"
-    )
+    model = YOLO(r"ultralytics/cfg/models/v8/yolov8_BiFPN.yaml", task="detect")
 
     # 2. 开始训练
     # 训练完成后，results 变量会记录训练过程
@@ -18,7 +15,7 @@ def main():
         batch=16,
         workers=4,
         project="runs/detect",
-        name="BiFPN_exp"
+        name="BiFPN_exp",
     )
 
     # 3. 核心步骤：训练完成后立即进行“期末考试”（测试集评估）
@@ -26,16 +23,14 @@ def main():
     print("训练已结束，正在启动测试集(Test Set)最终评估...")
     print("=" * 30 + "\n")
 
-
-
     test_results = model.val(
-        split='test',  # 强制使用 test 路径
+        split="test",  # 强制使用 test 路径
         project="runs/detect",
         name="BiFPN_exp_TEST_RESULTS",  # 结果会单独存放在这个文件夹
-        save_json=True  # 建议开启，方便后续做数据分析
+        save_json=True,  # 建议开启，方便后续做数据分析
     )
 
-    print(f"\n测试集评估完成！结果保存在: runs/detect/BiFPN_exp_TEST_RESULTS")
+    print("\n测试集评估完成！结果保存在: runs/detect/BiFPN_exp_TEST_RESULTS")
     print(f"测试集 mAP50: {test_results.results_dict['metrics/m_ap50']:.4f}")
 
 

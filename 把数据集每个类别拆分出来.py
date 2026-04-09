@@ -1,5 +1,6 @@
 import os
 import shutil
+
 from tqdm import tqdm
 
 # =========================
@@ -49,7 +50,7 @@ for img_path in tqdm(image_paths):
     label_path = label_map[name]
 
     # 读取类别（默认取第一个目标）
-    with open(label_path, "r") as f:
+    with open(label_path) as f:
         lines = f.readlines()
 
     if len(lines) == 0:

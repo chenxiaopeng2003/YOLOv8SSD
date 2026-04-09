@@ -72,7 +72,7 @@ CVAPI(void)   cvFree_( void* ptr );
 /* Allocates and initializes IplImage header */
 CVAPI(IplImage*)  cvCreateImageHeader( CvSize size, int depth, int channels );
 
-/* Inializes IplImage header */
+/* Initializes IplImage header */
 CVAPI(IplImage*) cvInitImageHeader( IplImage* image, CvSize size, int depth,
                                    int channels, int origin CV_DEFAULT(0),
                                    int align CV_DEFAULT(4));
@@ -356,7 +356,7 @@ CVAPI(void) cvClearND( CvArr* arr, const int* idx );
 /* Converts CvArr (IplImage or CvMat,...) to CvMat.
    If the last parameter is non-zero, function can
    convert multi(>2)-dimensional array to CvMat as long as
-   the last array's dimension is continous. The resultant
+   the last array's dimension is continuous. The resultant
    matrix will be have appropriate (a huge) number of rows */
 CVAPI(CvMat*) cvGetMat( const CvArr* arr, CvMat* header,
                        int* coi CV_DEFAULT(NULL),
@@ -397,7 +397,7 @@ CVAPI(void)  cvCreateData( CvArr* arr );
 /* Releases array data */
 CVAPI(void)  cvReleaseData( CvArr* arr );
 
-/* Attaches user data to the array header. The step is reffered to
+/* Attaches user data to the array header. The step is referred to
    the pre-last dimension. That is, all the planes of the array
    must be joint (w/o gaps) */
 CVAPI(void)  cvSetData( CvArr* arr, void* data, int step );
@@ -705,7 +705,7 @@ CVAPI(void) cvMulTransposed( const CvArr* src, CvArr* dst, int order,
                              const CvArr* delta CV_DEFAULT(NULL),
                              double scale CV_DEFAULT(1.) );
 
-/* Tranposes matrix. Square matrices can be transposed in-place */
+/* Transposes matrix. Square matrices can be transposed in-place */
 CVAPI(void)  cvTranspose( const CvArr* src, CvArr* dst );
 #define cvT cvTranspose
 
@@ -713,7 +713,7 @@ CVAPI(void)  cvTranspose( const CvArr* src, CvArr* dst );
 CVAPI(void)  cvCompleteSymm( CvMat* matrix, int LtoR CV_DEFAULT(0) );
 
 /* Mirror array data around horizontal (flip=0),
-   vertical (flip=1) or both(flip=-1) axises:
+   vertical (flip=1) or both(flip=-1) axes:
    cvFlip(src) flips images vertically and sequences horizontally (inplace) */
 CVAPI(void)  cvFlip( const CvArr* src, CvArr* dst CV_DEFAULT(NULL),
                      int flip_mode CV_DEFAULT(0));
@@ -1151,7 +1151,7 @@ CVAPI(int)  cvGraphRemoveVtx( CvGraph* graph, int index );
 CVAPI(int)  cvGraphRemoveVtxByPtr( CvGraph* graph, CvGraphVtx* vtx );
 
 
-/* Link two vertices specifed by indices or pointers if they
+/* Link two vertices specified by indices or pointers if they
    are not connected or return pointer to already existing edge
    connecting the vertices.
    Functions return 1 if a new edge was created, 0 otherwise */
@@ -1420,7 +1420,7 @@ CVAPI(CvScalar)  cvColorToScalar( double packed_color, int arrtype );
 
 /* Returns the polygon points which make up the given ellipse.  The ellipse is define by
    the box of size 'axes' rotated 'angle' around the 'center'.  A partial sweep
-   of the ellipse arc can be done by spcifying arc_start and arc_end to be something
+   of the ellipse arc can be done by specifying arc_start and arc_end to be something
    other than 0 and 360, respectively.  The input array 'pts' must be large enough to
    hold the result.  The total number of points stored into 'pts' is returned by this
    function. */
@@ -1492,7 +1492,7 @@ CVAPI(void)  cvGetModuleInfo( const char* module_name,
 typedef void* (CV_CDECL *CvAllocFunc)(size_t size, void* userdata);
 typedef int (CV_CDECL *CvFreeFunc)(void* pptr, void* userdata);
 
-/* Set user-defined memory managment functions (substitutors for malloc and free) that
+/* Set user-defined memory management functions (substitutors for malloc and free) that
    will be called by cvAlloc, cvFree and higher-level functions (e.g. cvCreateImage) */
 CVAPI(void) cvSetMemoryManager( CvAllocFunc alloc_func CV_DEFAULT(NULL),
                                CvFreeFunc free_func CV_DEFAULT(NULL),
@@ -1732,13 +1732,13 @@ CVAPI(void) cvSetErrStatus( int status );
 #define CV_ErrModeParent   1   /* Print error and continue */
 #define CV_ErrModeSilent   2   /* Don't print and continue */
 
-/* Retrives current error processing mode */
+/* Retrieves current error processing mode */
 CVAPI(int)  cvGetErrMode( void );
 
 /* Sets error processing mode, returns previously used mode */
 CVAPI(int) cvSetErrMode( int mode );
 
-/* Sets error status and performs some additonal actions (displaying message box,
+/* Sets error status and performs some additional actions (displaying message box,
  writing message to stderr, terminating application etc.)
  depending on the current error mode */
 CVAPI(void) cvError( int status, const char* func_name,
@@ -1747,7 +1747,7 @@ CVAPI(void) cvError( int status, const char* func_name,
 /* Retrieves textual description of the error given its code */
 CVAPI(const char*) cvErrorStr( int status );
 
-/* Retrieves detailed information about the last error occured */
+/* Retrieves detailed information about the last error occurred */
 CVAPI(int) cvGetErrInfo( const char** errcode_desc, const char** description,
                         const char** filename, int* line );
 
@@ -1835,7 +1835,7 @@ static char cvFuncName[] = Name
 /*
  CV_CALL macro calls CV (or IPL) function, checks error status and
  signals a error if the function failed. Useful in "parent node"
- error procesing mode
+ error processing mode
  */
 #define CV_CALL( Func )                                             \
 {                                                                   \
