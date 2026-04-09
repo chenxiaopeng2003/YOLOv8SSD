@@ -72,7 +72,7 @@ namespace cv
         //Rodrigues vector
         Affine3(const Vec3& rvec, const Vec3& t = Vec3::all(0));
 
-        //Combines all contructors above. Supports 4x4, 4x3, 3x3, 1x3, 3x1 sizes of data matrix
+        //Combines all constructors above. Supports 4x4, 4x3, 3x3, 1x3, 3x1 sizes of data matrix
         explicit Affine3(const Mat& data, const Vec3& t = Vec3::all(0));
 
         //From 16th element array
@@ -86,7 +86,7 @@ namespace cv
         //Rodrigues vector
         void rotation(const Vec3& rvec);
 
-        //Combines rotation methods above. Suports 3x3, 1x3, 3x1 sizes of data matrix;
+        //Combines rotation methods above. Supports 3x3, 1x3, 3x1 sizes of data matrix;
         void rotation(const Mat& data);
 
         void linear(const Mat3& L);
@@ -159,7 +159,7 @@ namespace cv
 
 
 ///////////////////////////////////////////////////////////////////////////////////
-/// Implementaiton
+/// Implementation
 
 template<typename T> inline
 cv::Affine3<T>::Affine3()
@@ -262,7 +262,7 @@ void cv::Affine3<T>::rotation(const Vec3& _rvec)
     }
 }
 
-//Combines rotation methods above. Suports 3x3, 1x3, 3x1 sizes of data matrix;
+//Combines rotation methods above. Supports 3x3, 1x3, 3x1 sizes of data matrix;
 template<typename T> inline
 void cv::Affine3<T>::rotation(const cv::Mat& data)
 {
@@ -281,7 +281,7 @@ void cv::Affine3<T>::rotation(const cv::Mat& data)
         rotation(_rvec);
     }
     else
-        CV_Assert(!"Input marix can be 3x3, 1x3 or 3x1");
+        CV_Assert(!"Input matrix can be 3x3, 1x3 or 3x1");
 }
 
 template<typename T> inline

@@ -1,23 +1,35 @@
-import torch
-from ultralytics import YOLO
-import cv2
-import numpy as np
+import datetime
 import os
 import re
 import time
-import datetime
+
+import cv2
+import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
+from ultralytics import YOLO
+
 # ============================ 核心配置 ============================
-MODEL_PATH = r'L:\dasktop\A_Graduation_Project\ultralytics-main\runs\detect\cbam_exp\weights\best.pt'
-IMAGE_PATH = r"L:\dasktop\A_Graduation_Project\数据及预训练模型\每个类别图片-用于测试app\压痕\images\img_02_4402329100_00006.jpg"
-GT_LABEL_PATH = r"L:\dasktop\A_Graduation_Project\数据及预训练模型\每个类别图片-用于测试app\压痕\labels\img_02_4402329100_00006.txt"
+MODEL_PATH = r"L:\dasktop\A_Graduation_Project\ultralytics-main\runs\detect\cbam_exp\weights\best.pt"
+IMAGE_PATH = (
+    r"L:\dasktop\A_Graduation_Project\数据及预训练模型\每个类别图片-用于测试app\压痕\images\img_02_4402329100_00006.jpg"
+)
+GT_LABEL_PATH = (
+    r"L:\dasktop\A_Graduation_Project\数据及预训练模型\每个类别图片-用于测试app\压痕\labels\img_02_4402329100_00006.txt"
+)
 
 # 完整中英对照表
 CLASS_MAP = {
-    "chongkong": "冲孔", "hanfeng": "焊缝", "yueyawan": "月牙弯",
-    "shuiban": "水斑", "youban": "油污", "siban": "丝斑",
-    "yiwu": "异物", "yahen": "压痕", "zhehen": "折痕", "yaozhe": "腰折"
+    "chongkong": "冲孔",
+    "hanfeng": "焊缝",
+    "yueyawan": "月牙弯",
+    "shuiban": "水斑",
+    "youban": "油污",
+    "siban": "丝斑",
+    "yiwu": "异物",
+    "yahen": "压痕",
+    "zhehen": "折痕",
+    "yaozhe": "腰折",
 }
 
 # 微软雅黑路径 (若报错请确认此文件存在)
@@ -26,8 +38,9 @@ FONT_PATH = r"C:\Windows\Fonts\msyh.ttc"
 
 # ==================================================================
 
+
 def draw_text_with_bg(img, text, x, y, color, font_size=30):
-    """在图片上渲染带背景的中文"""
+    """在图片上渲染带背景的中文."""
     img_pil = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
     draw = ImageDraw.Draw(img_pil)
     try:
@@ -43,14 +56,14 @@ def draw_text_with_bg(img, text, x, y, color, font_size=30):
 
 
 def load_gt_boxes_exact(gt_path, img_w, img_h, model_names):
-    """精准解析包含干扰字符的 YOLO 标签文件"""
+    """精准解析包含干扰字符的 YOLO 标签文件."""
     gt_boxes = []
     if not os.path.exists(gt_path):
         return gt_boxes
 
-    with open(gt_path, 'r', encoding='utf-8') as f:
+    with open(gt_path, encoding="utf-8") as f:
         for line in f.readlines():
-            clean_line = re.sub(r'\[.*?\]', '', line).strip()
+            clean_line = re.sub(r"\[.*?\]", "", line).strip()
             parts = clean_line.split()
 
             if len(parts) >= 5:
@@ -63,16 +76,14 @@ def load_gt_boxes_exact(gt_path, img_w, img_h, model_names):
                 y2 = int((yc + h / 2) * img_h)
 
                 label_en = model_names[cls_id] if cls_id in model_names else f"ID_{cls_id}"
-                gt_boxes.append({
-                    'label_en': label_en,
-                    'label_cn': CLASS_MAP.get(label_en, label_en),
-                    'box': [x1, y1, x2, y2]
-                })
+                gt_boxes.append(
+                    {"label_en": label_en, "label_cn": CLASS_MAP.get(label_en, label_en), "box": [x1, y1, x2, y2]}
+                )
     return gt_boxes
 
 
 def resize_image_for_display(img, target_h=700):
-    """物理缩小图片像素，保证100%完整显示且不裁切"""
+    """物理缩小图片像素，保证100%完整显示且不裁切."""
     h, w = img.shape[:2]
     scale = target_h / h
     new_w = int(w * scale)
@@ -80,7 +91,7 @@ def resize_image_for_display(img, target_h=700):
 
 
 def print_detection_report(results, img_w, img_h, inf_time_ms):
-    """生成并打印详细的缺陷检测数据对比报告"""
+    """生成并打印详细的缺陷检测数据对比报告."""
     now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     boxes = results.boxes
     num_defects = len(boxes)
@@ -216,7 +227,7 @@ def run_comparison():
         img_gt = draw_text_with_bg(img_gt, "未解析到标签数据", 50, 50, (0, 0, 255), 40)
     else:
         for obj in gt_list:
-            b = obj['box']
+            b = obj["box"]
             cv2.rectangle(img_gt, (b[0], b[1]), (b[2], b[3]), (0, 0, 255), 4)
             img_gt = draw_text_with_bg(img_gt, f"人工标签: {obj['label_cn']}", b[0], b[1] - 45, (0, 0, 255))
 
