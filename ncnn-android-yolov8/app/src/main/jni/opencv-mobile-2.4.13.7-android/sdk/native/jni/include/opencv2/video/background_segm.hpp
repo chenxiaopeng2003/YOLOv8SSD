@@ -69,7 +69,7 @@ public:
 
 
 /*!
- Gaussian Mixture-based Backbround/Foreground Segmentation Algorithm
+ Gaussian Mixture-based Background/Foreground Segmentation Algorithm
 
  The class implements the following algorithm:
  "An improved adaptive background mixture model for real-time tracking with shadow detection"
@@ -110,7 +110,7 @@ protected:
 
 /*!
  The class implements the following algorithm:
- "Improved adaptive Gausian mixture model for background subtraction"
+ "Improved adaptive Gaussian mixture model for background subtraction"
  Z.Zivkovic
  International Conference Pattern Recognition, UK, August, 2004.
  http://www.zoranz.net/Publications/zivkovic2004ICPR.pdf
