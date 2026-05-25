@@ -223,7 +223,7 @@ Cv64suf;
 typedef int CVStatus;
 
 enum {
- CV_StsOk=                       0,  /* everithing is ok                */
+ CV_StsOk=                       0,  /* everything is ok                */
  CV_StsBackTrace=               -1,  /* pseudo error for back trace     */
  CV_StsError=                   -2,  /* unknown /unspecified error      */
  CV_StsInternal=                -3,  /* internal error (bad state)      */
