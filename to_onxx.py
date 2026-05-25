@@ -1,7 +1,7 @@
-'''
+r"""
 import cv2
 import numpy as np
-from ultralytics import YOLO
+from ultralytics import YOLO.
 
 # ======================
 # 1. 参数配置
@@ -102,13 +102,13 @@ img_show = cv2.resize(img, (1280, 720))
 cv2.imshow("Sliding Window Detection", img_show)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-'''
+"""
+
 from ultralytics import YOLO
+
 # 加载你训练好的模型
 model = YOLO("runs/detect/ghostconv_exp/weights/ghostconv.pt")
 
 # 导出为 ONNX
 # simplify=True 会自动调用 onnx-simplifer，这对 ncnn 转换非常重要
 model.export(format="onnx", imgsz=640, simplify=True, opset=12)
-
-
