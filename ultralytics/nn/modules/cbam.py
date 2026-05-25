@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 
 class ChannelAttention(nn.Module):
@@ -12,7 +11,7 @@ class ChannelAttention(nn.Module):
         self.mlp = nn.Sequential(
             nn.Conv2d(channels, channels // reduction, 1, bias=False),
             nn.ReLU(),
-            nn.Conv2d(channels // reduction, channels, 1, bias=False)
+            nn.Conv2d(channels // reduction, channels, 1, bias=False),
         )
 
         self.sigmoid = nn.Sigmoid()
@@ -47,7 +46,6 @@ class SpatialAttention(nn.Module):
 
 
 class CBAM(nn.Module):
-
     def __init__(self, c1):
         super().__init__()
 

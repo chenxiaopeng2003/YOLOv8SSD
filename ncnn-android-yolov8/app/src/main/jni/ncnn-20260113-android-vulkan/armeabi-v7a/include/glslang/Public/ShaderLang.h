@@ -245,7 +245,7 @@ typedef enum {
 //
 typedef enum {
     EShTexSampTransKeep,   // keep textures and samplers as is (default)
-    EShTexSampTransUpgradeTextureRemoveSampler,  // change texture w/o embeded sampler into sampled texture and throw away all samplers
+    EShTexSampTransUpgradeTextureRemoveSampler,  // change texture w/o embedded sampler into sampled texture and throw away all samplers
     LAST_ELEMENT_MARKER(EShTexSampTransCount),
 } EShTextureSamplerTransformMode;
 
@@ -271,7 +271,7 @@ enum EShMessages : unsigned {
     EShMsgBuiltinSymbolTable   = (1 << 14), // print the builtin symbol table
     EShMsgEnhanced             = (1 << 15), // enhanced message readability
     EShMsgAbsolutePath         = (1 << 16), // Output Absolute path for messages
-    EShMsgDisplayErrorColumn   = (1 << 17), // Display error message column aswell as line
+    EShMsgDisplayErrorColumn   = (1 << 17), // Display error message column as well as line
     EShMsgLinkTimeOptimization = (1 << 18), // perform cross-stage optimizations during linking
     EShMsgValidateCrossStageIO = (1 << 19), // validate shader inputs have matching outputs in previous stage
     LAST_ELEMENT_MARKER(EShMsgCount),
@@ -281,7 +281,7 @@ enum EShMessages : unsigned {
 // Options for building reflection
 //
 typedef enum {
-    EShReflectionDefault            = 0,        // default is original behaviour before options were added
+    EShReflectionDefault            = 0,        // default is original behavior before options were added
     EShReflectionStrictArraySuffix  = (1 << 0), // reflection will follow stricter rules for array-of-structs suffixes
     EShReflectionBasicArraySuffix   = (1 << 1), // arrays of basic types will be appended with [0] as in GL reflection
     EShReflectionIntermediateIO     = (1 << 2), // reflect inputs and outputs to program, even with no vertex shader
@@ -799,8 +799,8 @@ struct TVarEntryInfo;
 // 6) all uniforms with no binding and no set defined
 //
 // mapIO will use this resolver in two phases. The first
-// phase is a notification phase, calling the corresponging
-// notifiy callbacks, this phase ends with a call to endNotifications.
+// phase is a notification phase, calling the corresponding
+// notify callbacks, this phase ends with a call to endNotifications.
 // Phase two starts directly after the call to endNotifications
 // and calls all other callbacks to validate and to get the
 // bindings, sets, locations, component and color indices.
@@ -847,7 +847,7 @@ public:
     virtual void beginResolve(EShLanguage stage) = 0;
     // Called by mapIO when it has finished the resolve pass
     virtual void endResolve(EShLanguage stage) = 0;
-    // Called by mapIO when it starts its symbol collect for teh given stage
+    // Called by mapIO when it starts its symbol collect for the given stage
     virtual void beginCollect(EShLanguage stage) = 0;
     // Called by mapIO when it has finished the symbol collect
     virtual void endCollect(EShLanguage stage) = 0;
