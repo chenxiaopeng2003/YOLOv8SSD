@@ -1,8 +1,7 @@
-from ultralytics import YOLO
 import multiprocessing
-import os
-import shutil
 from pathlib import Path
+
+from ultralytics import YOLO
 
 
 def main():
@@ -32,13 +31,7 @@ def main():
     # 5 运行验证
     # =========================
     metrics = model.val(
-        data=data_yaml,
-        imgsz=640,
-        batch=16,
-        workers=4,
-        save_json=True,
-        project="runs/detect",
-        name="baseline"
+        data=data_yaml, imgsz=640, batch=16, workers=4, save_json=True, project="runs/detect", name="baseline"
     )
 
     # =========================

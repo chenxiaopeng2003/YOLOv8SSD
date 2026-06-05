@@ -128,7 +128,7 @@ public:
      */
     Exception();
     /*!
-     Full constructor. Normally the constuctor is not called explicitly.
+     Full constructor. Normally the constructor is not called explicitly.
      Instead, the macros CV_Error(), CV_Error_() and CV_Assert() are used.
     */
     Exception(int _code, const string& _err, const string& _func, const string& _file, int _line);
@@ -145,8 +145,8 @@ public:
     int code; ///< error code @see CVStatus
     string err; ///< error description
     string func; ///< function name. Available only when the compiler supports getting it
-    string file; ///< source file name where the error has occured
-    int line; ///< line number in the source file where the error has occured
+    string file; ///< source file name where the error has occurred
+    int line; ///< line number in the source file where the error has occurred
 };
 
 
@@ -308,7 +308,7 @@ template<typename _Tp> static inline void deallocate(_Tp* ptr, size_t)
 /*!
   Aligns pointer by the certain number of bytes
 
-  This small inline function aligns the pointer by the certian number of bytes by shifting
+  This small inline function aligns the pointer by the certain number of bytes by shifting
   it forward by 0 or a positive offset.
 */
 template<typename _Tp> static inline _Tp* alignPtr(_Tp* ptr, int n=(int)sizeof(_Tp))
@@ -319,7 +319,7 @@ template<typename _Tp> static inline _Tp* alignPtr(_Tp* ptr, int n=(int)sizeof(_
 /*!
   Aligns buffer size by the certain number of bytes
 
-  This small inline function aligns a buffer size by the certian number of bytes by enlarging it.
+  This small inline function aligns a buffer size by the certain number of bytes by enlarging it.
 */
 static inline size_t alignSize(size_t sz, int n)
 {
@@ -473,7 +473,7 @@ public:
     //! dot product computed with the default precision
     _Tp dot(const Matx<_Tp, m, n>& v) const;
 
-    //! dot product computed in double-precision arithmetics
+    //! dot product computed in double-precision arithmetic
     double ddot(const Matx<_Tp, m, n>& v) const;
 
     //! conversion to another data type
@@ -734,7 +734,7 @@ public:
 
     //! dot product
     _Tp dot(const Point_& pt) const;
-    //! dot product computed in double-precision arithmetics
+    //! dot product computed in double-precision arithmetic
     double ddot(const Point_& pt) const;
     //! cross-product
     double cross(const Point_& pt) const;
@@ -775,7 +775,7 @@ public:
 
     //! dot product
     _Tp dot(const Point3_& pt) const;
-    //! dot product computed in double-precision arithmetics
+    //! dot product computed in double-precision arithmetic
     double ddot(const Point3_& pt) const;
     //! cross product of the 2 3D points
     Point3_ cross(const Point3_& pt) const;
@@ -1467,7 +1467,7 @@ public:
    <ul>
    <li> using cv::Mat::create(nrows, ncols, type) method or
      the similar constructor cv::Mat::Mat(nrows, ncols, type[, fill_value]) constructor.
-     A new matrix of the specified size and specifed type will be allocated.
+     A new matrix of the specified size and specified type will be allocated.
      "type" has the same meaning as in cvCreateMat function,
      e.g. CV_8UC1 means 8-bit single-channel matrix, CV_32FC2 means 2-channel (i.e. complex)
      floating-point matrix etc:
@@ -1674,7 +1674,7 @@ public:
     // (_type is CV_8UC1, CV_64FC3, CV_32SC(12) etc.)
     Mat(int rows, int cols, int type);
     Mat(Size size, int type);
-    //! constucts 2D matrix and fills it with the specified value _s.
+    //! constructs 2D matrix and fills it with the specified value _s.
     Mat(int rows, int cols, int type, const Scalar& s);
     Mat(Size size, int type, const Scalar& s);
 
@@ -2680,7 +2680,7 @@ CV_EXPORTS_W bool clipLine(Rect imgRect, CV_OUT CV_IN_OUT Point& pt1, CV_OUT CV_
 class CV_EXPORTS LineIterator
 {
 public:
-    //! intializes the iterator
+    //! initializes the iterator
     LineIterator( const Mat& img, Point pt1, Point pt2,
                   int connectivity=8, bool leftToRight=false );
     //! returns pointer to the current pixel
@@ -2832,7 +2832,7 @@ public:
     Mat_(int _ndims, const int* _sizes);
     //! n-dim array constructor that sets each matrix element to specified value
     Mat_(int _ndims, const int* _sizes, const _Tp& value);
-    //! copy/conversion contructor. If m is of different type, it's converted
+    //! copy/conversion constructor. If m is of different type, it's converted
     Mat_(const Mat& m);
     //! copy constructor
     Mat_(const Mat_& m);
@@ -2905,7 +2905,7 @@ public:
     static MatExpr eye(int rows, int cols);
     static MatExpr eye(Size size);
 
-    //! some more overriden methods
+    //! some more overridden methods
     Mat_& adjustROI( int dtop, int dbottom, int dleft, int dright );
     Mat_ operator()( const Range& rowRange, const Range& colRange ) const;
     Mat_ operator()( const Rect& roi ) const;
@@ -3216,7 +3216,7 @@ public:
     typedef _Tp value_type;
     enum { buffer_padding = (int)((16 + sizeof(_Tp) - 1)/sizeof(_Tp)) };
 
-    //! the default contructor
+    //! the default constructor
     AutoBuffer();
     //! constructor taking the real buffer size
     AutoBuffer(size_t _size);
@@ -3260,7 +3260,7 @@ protected:
  void normalizeColorHist(Mat& hist)
  {
  #if 1
-     // intialize iterator (the style is different from STL).
+     // initialize iterator (the style is different from STL).
      // after initialization the iterator will contain
      // the number of slices or planes
      // the iterator will go through
@@ -3584,7 +3584,7 @@ public:
 
      ref<_Tp>(i0,...[,hashval]) is equivalent to *(_Tp*)ptr(i0,...,true[,hashval]).
      The methods always return a valid reference.
-     If the element did not exist, it is created and initialiazed with 0.
+     If the element did not exist, it is created and initialized with 0.
     */
     //! returns reference to the specified element (1D case)
     template<typename _Tp> _Tp& ref(int i0, size_t* hashval=0);
@@ -3793,7 +3793,7 @@ public:
 
     //! the default constructor
     SparseMat_();
-    //! the full constructor equivelent to SparseMat(dims, _sizes, DataType<_Tp>::type)
+    //! the full constructor equivalent to SparseMat(dims, _sizes, DataType<_Tp>::type)
     SparseMat_(int dims, const int* _sizes);
     //! the copy constructor. If DataType<_Tp>.type != m.type(), the m elements are converted
     SparseMat_(const SparseMat& m);
@@ -4009,7 +4009,7 @@ class CV_EXPORTS FileNode;
 
  The storage is organized as a tree of nested sequences (or lists) and mappings.
  Sequence is a heterogenious array, which elements are accessed by indices or sequentially using an iterator.
- Mapping is analogue of std::map or C structure, which elements are accessed by names.
+ Mapping is analog of std::map or C structure, which elements are accessed by names.
  The most top level structure is a mapping.
  Leaves of the file storage tree are integers, floating-point numbers and text strings.
 
