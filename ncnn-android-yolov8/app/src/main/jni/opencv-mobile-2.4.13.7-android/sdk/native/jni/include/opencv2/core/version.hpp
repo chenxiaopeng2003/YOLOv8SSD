@@ -41,7 +41,7 @@
 
 /*
   definition of the current version of OpenCV
-  Usefull to test in user programs
+  Useful to test in user programs
 */
 
 #ifndef __OPENCV_VERSION_HPP__
