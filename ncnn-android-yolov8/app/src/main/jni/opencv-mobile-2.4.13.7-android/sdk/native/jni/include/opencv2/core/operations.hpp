@@ -3306,7 +3306,7 @@ template<typename _Tp> static inline _Tp gcd(_Tp a, _Tp b)
     *    notice, this list of conditions and the following disclaimer in the
     *    documentation and/or other materials provided with the distribution.
     * 3. All advertising materials mentioning features or use of this software
-    *    must display the following acknowledgement:
+    *    must display the following acknowledgment:
     *  This product includes software developed by the University of
     *  California, Berkeley and its contributors.
     * 4. Neither the name of the University nor the names of its contributors
@@ -3605,7 +3605,7 @@ partition( const vector<_Tp>& _vec, vector<int>& labels,
         int root = i;
         while( nodes[root][PARENT] >= 0 )
             root = nodes[root][PARENT];
-        // re-use the rank as the class label
+        // reuse the rank as the class label
         if( nodes[root][RANK] >= 0 )
             nodes[root][RANK] = ~nclasses++;
         labels[i] = ~nodes[root][RANK];
