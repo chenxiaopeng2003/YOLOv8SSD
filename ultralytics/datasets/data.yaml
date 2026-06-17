@@ -2,7 +2,7 @@ train: L:\dasktop\A_Graduation_Project\ultralytics-main\ultralytics\datasets\yiw
 val: L:\dasktop\A_Graduation_Project\ultralytics-main\ultralytics\datasets\yiwuyahenzenqiang\images\val # val images (relative to 'path') 5000 images
 test: L:\dasktop\A_Graduation_Project\ultralytics-main\ultralytics\datasets\yiwuyahenzenqiang\images\test
 
-nc : 10
+nc: 10
 # Classes
 names:
   0: chongkong
