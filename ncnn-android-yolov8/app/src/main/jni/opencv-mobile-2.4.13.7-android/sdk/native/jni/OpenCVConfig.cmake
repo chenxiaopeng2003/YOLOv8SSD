@@ -335,7 +335,7 @@ endif()
 
 
 #
-# Some macroses for samples
+# Some macros for samples
 #
 macro(ocv_check_dependencies)
   set(OCV_DEPENDENCIES_FOUND TRUE)

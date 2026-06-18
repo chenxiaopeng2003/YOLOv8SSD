@@ -431,7 +431,7 @@ CVAPI(CvHistogram*)  cvCreateHist( int dims, int* sizes, int type,
                                    float** ranges CV_DEFAULT(NULL),
                                    int uniform CV_DEFAULT(1));
 
-/* Assignes histogram bin ranges */
+/* Assigns histogram bin ranges */
 CVAPI(void)  cvSetHistBinRanges( CvHistogram* hist, float** ranges,
                                 int uniform CV_DEFAULT(1));
 
